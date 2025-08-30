@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"go-tropic-thunder/pkg/db"
+	"go-tropic-thunder/pkg/incentivizer"
 	"go-tropic-thunder/pkg/models"
 	"net/http"
 )
@@ -57,9 +58,11 @@ func InsertDocumentHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	txHash, err := incentivizer.TransferToken(incentivizer.TransferAccountAddress, incentivizer.DefaultTransferAmount)
+
 	response := models.CommonResponse{
 		Status: http.StatusOK,
-		Data:   map[string]string{"cid": cid},
+		Data:   map[string]string{"cid": cid, "txHash": txHash},
 	}
 
 	// Set Content-Type header and encode the response

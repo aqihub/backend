@@ -28,3 +28,12 @@ type DocumentsResponse struct {
 	LatestDocument string   `json:"latest_document"`
 	Documents      []string `json:"documents"`
 }
+
+type TransferResponse struct {
+	TxHash string `json:"tx_hash"`
+}
+
+type BalanceEntry struct {
+	Address string `json:"address"`
+	Balance string `json:"balance"`
+}
